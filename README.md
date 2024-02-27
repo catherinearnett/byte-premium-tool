@@ -1,4 +1,4 @@
-# Byte Ratio Calculator
+# Byte Premium Tool
 A tool to calculate scaling needed to achieve cross-lingual training data equity. 
 
 This tool allows you to determine the amount of data (in bytes) for a given language that is equivalent to  another amount of data
