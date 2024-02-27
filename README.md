@@ -1,9 +1,7 @@
 # Byte Premium Tool
 A tool to calculate scaling needed to achieve cross-lingual training data equity. 
 
-This tool allows you to determine the amount of data (in bytes) for a given language that is equivalent to  another amount of data
-
-link to paper
+This tool allows you to determine the amount of data (in bytes) for a given language that is equivalent to another amount of data. For more information see the [paper].
 
 To use the tool, 
 
@@ -11,18 +9,16 @@ To use the tool,
 *  Choose an option/method
 
 
-## Sources
+## Uses
 
-There are multiple options for the source of the byte ratios: `option 1`, `option 2`, `option 3`. 
+## Use Case 1: Look up pre-calculated byte premiums
 
-## Option 1: NLLB method
+This is the recommended method if the languages you are comparing are both on in our dataset of 1155 languages. This method will calculate the ratio between two languages based on the NLLB, FLORES, or Bible datasets in descending order of priority (refer to paper for details). To use this methods, you only need to provide two language codes. The output will be the ratio of bytes required by the first language with respect to the bytes required for the second language. 
 
-This is the recommended method if the languages you are comparing are both on the list. See `Appendix` for list of languages. 
-
-This method will calculate the ratio between two languages based on the NLLB dataset (refer to paper). 
+Language codes should be provided in the format ISO639-3 and ISO 15924, separated by an underscore, e.g. eng_latn.
 
 ```
-python byte_ratio_calculator/byte_ratio_calculator.py byte_ratio_calculator/nllb_coef.tsv -m 'option_1' -l1 'eng' -l2 'arb'
+python byte_premium_tool.py -l1 'mya_mymr' -l2 'eng_latn'
 ```
 
 ### Required Arguments
