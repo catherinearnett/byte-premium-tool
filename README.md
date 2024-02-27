@@ -8,6 +8,10 @@ To use the tool,
 *  download this repository (what's the technical term)
 *  Choose an option/method
 
+## Requirements
+
+*  scipy
+
 
 ## Uses
 
@@ -49,25 +53,19 @@ We fit linear regressions to predict the length ratio from:
 
 We estimate the byte premium by dividing the predicted length ratio by the byte-character ratio.
 
-Entropy over characters and byte-character ratio are calculated with the tool. 
+Entropy over characters and byte-character ratio are calculated with the tool. **The uploaded texts do not have to be parallel. **
+
+The only feature that must be provided is writing system type (abugida, abjad, etc.; Wikipedia). You should also provide language family (Glottolog) and script name (not the ISO 15924 code, but the actual name) if possible. 
+
 
 ```
-python byte_ratio_calculator.py -m 'option_3' -l1 'eng' -l1t 'eng.txt' -l2 'arb' -l2t 'arb.txt'
+python byte_premium_tool.py -l1 arb_arab -t1 arb.txt -l2 eng_latn -t2 eng.txt
 ```
 
-### Required Arguments
-*  option/method
-*  output directory
-*  l1, l2
-*  paralell corpus
-
-## Output Format(s)
 
 ## Version and Requirements
 
 ## How to Cite
-
-## References
 
 ## Appendix
 
