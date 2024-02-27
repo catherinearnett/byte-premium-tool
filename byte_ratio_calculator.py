@@ -201,7 +201,7 @@ def fit_linear_models(l1, l1writingtype, l1scriptname, l1family, all, l1text='de
 def main():
     args = parse_args()
     args = process_args(args)
-    all_data_df = pd.read_csv("cleaned_data.tsv", sep="\t", header=0)
+    all_data_df = pd.read_csv("all_merged_20240223.tsv", sep="\t", header=0)
     if (args.language1 in list(all_data_df['lang'])) and (args.language2 in list(all_data_df['lang'])):
         l1_retrieved = retrieve_calculated_ratio(args.language1, all_data_df)
         l2_retrieved = retrieve_calculated_ratio(args.language2, all_data_df)
