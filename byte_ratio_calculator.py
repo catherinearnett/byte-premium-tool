@@ -212,12 +212,13 @@ def main():
         byte_premium = calculate_byte_premium(args.l1text, args.l2text)
         return byte_premium
     else:
+        #we might be able to simplify this as well
         if args.language2 == 'eng_latn':
             l1_predictions = fit_linear_models(args.language1, args.l1writingtype, args.l1scriptname, args.l1family, all_data_df, args.l1text)
             return l1_predictions
         else:
             l1_predictions = fit_linear_models(args.language1, args.l1writingtype, args.l1scriptname, args.l1family, all_data_df, args.l1text)
-            l2_predictions = ffit_linear_models(args.language2, args.l2writingtype, args.l2scriptname, args.l2family, all_data_df, args.l2text)
+            l2_predictions = fit_linear_models(args.language2, args.l2writingtype, args.l2scriptname, args.l2family, all_data_df, args.l2text)
             l1_l2_predicted_ratio = l1_predictions/l2_predictions
             return l1_l2_predicted_ratio
 
