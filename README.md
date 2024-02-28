@@ -6,7 +6,9 @@ This tool allows you to determine the amount of data (in bytes) for a given lang
 To use the tool, 
 
 *  download this repository (what's the technical term)
-*  Choose an option/method
+*  For each language, input the arguments required for each use case.
+
+The output of the tool is a single ratio, which represents the number of bytes it takes to encode a parallel text in Language 1 relative to the number of bytes needed to encode the same content in Lanugage 2. 
 
 ## Requirements
 
@@ -15,7 +17,7 @@ To use the tool,
 
 ## Uses
 
-There are multiple ways to use this tool, depending on whether the languages are in our dataset and whether you have parallel text for the languages. 
+There are multiple ways to use this tool, depending on whether the languages are in our dataset and whether you have parallel text for the languages. The arguments required to use the tool depend on the use case. 
 
 ## Use Case 1: Look up Pre-Calculated Byte Premiums
 
@@ -45,17 +47,12 @@ python byte_premium_tool.py -l1 mya_mymr -t1 mya.txt -l2 eng_latn -t2 eng.txt
 
 If the language is not in the dataset and you do not have parallel text, you can predict the byte premium based on a few factors. 
 
-We fit linear regressions to predict the length ratio from:
-*  language family
-*  writing system type
-*  script name
-*  entropy over characters
+We fit linear regressions to predict the length ratio from langauge family, writing system type, script name, and entropy over characters. We estimate the byte premium by dividing the predicted length ratio by the byte-character ratio.
 
-We estimate the byte premium by dividing the predicted length ratio by the byte-character ratio.
+Entropy over characters and byte-character ratio are calculated by the tool from any texts in the language. **The uploaded texts do not have to be parallel. **
 
-Entropy over characters and byte-character ratio are calculated with the tool. **The uploaded texts do not have to be parallel. **
+The only feature of the languages that must be provided is writing system type (alphabet, abugida, abjad, logography). Descriptions of these types can be found in Appendix C of the paper. We recommend finding the script type on the Wikipedia page for the script [script_type.png]. You should also provide language family, which can be looked up on [Glottolog](https://glottolog.org/glottolog/language), and script name (not the ISO 15924 code, but the actual name) if possible, e.g. Latin, Ge'ez, Burmese. 
 
-The only feature that must be provided is writing system type (abugida, abjad, etc.; Wikipedia). You should also provide language family (Glottolog) and script name (not the ISO 15924 code, but the actual name) if possible. 
 
 
 ```
