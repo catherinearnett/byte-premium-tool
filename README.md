@@ -10,11 +10,6 @@ To use the tool,
 
 The output of the tool is a single ratio, which represents the number of bytes it takes to encode a parallel text in Language 1 relative to the number of bytes needed to encode the same content in Lanugage 2. 
 
-## Requirements
-
-*  scipy
-
-
 ## Uses
 
 There are multiple ways to use this tool, depending on whether the languages are in our dataset and whether you have parallel text for the languages. The arguments required to use the tool depend on the use case. 
@@ -53,17 +48,14 @@ Entropy over characters and byte-character ratio are calculated by the tool from
 
 The only feature of the languages that must be provided is writing system type (alphabet, abugida, abjad, logography). Descriptions of these types can be found in Appendix C of the paper. We recommend finding the script type on the Wikipedia page for the script [script_type.png]. You should also provide language family, which can be looked up on [Glottolog](https://glottolog.org/glottolog/language), and script name (not the ISO 15924 code, but the actual name) if possible, e.g. Latin, Ge'ez, Burmese. 
 
-
-
 ```
-python byte_premium_tool.py -l1 arb_arab -t1 arb.txt -l2 eng_latn -t2 eng.txt
+python byte_premium_tool.py -l1 arb_arab -t1 arb.txt -w1 abjad -s1 Arabic -f1 Afro-Asiatic -l2 eng_latn -t2 eng.txt -w2 alphabet -s2 Latin -f2 Indo-European
 ```
 
 
 ## Version and Requirements
 
+*  scipy
+
 ## How to Cite
 
-## Appendix
-
-### NLLB languages list
