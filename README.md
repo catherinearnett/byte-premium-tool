@@ -1,12 +1,22 @@
 # Byte Premium Tool
-This is a tool to calculate scaling needed to achieve cross-lingual training data equity when dataset size is measured in bytes. For more information see the [paper].
 
-To use the tool, 
+This is a tool to calculate dataset scaling needed to achieve cross-lingual training data equity when dataset size is measured in UTF-8 bytes. For more information see the [paper].
 
-*  download this repository (what's the technical term)
-*  For each language, input the arguments required for each use case.
+The output of the tool is a single ratio, which represents the number of bytes it takes to encode a parallel text in Language 1 relative to the number of bytes needed to encode the same content in Language 2. 
 
-The output of the tool is a single ratio, which represents the number of bytes it takes to encode a parallel text in Language 1 relative to the number of bytes needed to encode the same content in Lanugage 2. 
+## Version and Requirements
+
+This tool requires `numpy`, `pandas`, `scipy` and `statsmodels` to be installed. 
+
+Tested in Python 3.9.
+
+### Installation
+
+To use the tool, clone this repository
+
+```
+git clone https://github.com/catherinearnett/byte-premium-tool.git
+```
 
 ## Uses
 
@@ -14,29 +24,32 @@ There are multiple ways to use this tool, depending on whether the languages are
 
 ## Use Case 1: Look up Pre-Calculated Byte Premiums
 
-This is the recommended method if the languages you are comparing are both on in our dataset of 1155 languages. This method will calculate the ratio between two languages based on the NLLB, FLORES, or Bible datasets in descending order of priority (refer to paper for details). To use this methods, you only need to provide two language codes. The output will be the ratio of bytes required by the first language with respect to the bytes required for the second language. 
+This is the recommended method if the languages you are comparing are both on in our dataset of 1155 languages. This method will retrieve the byte premium between two languages based on the NLLB, FLORES, or Bible datasets in descending order of priority (refer to paper for details). To use this method, you only need to provide two language codes. The output will be the ratio of bytes required by the first language with respect to the bytes required for the second language. 
 
 Language codes should be provided in the format ISO639-3 and ISO 15924, separated by an underscore, e.g. eng_latn.
 
 ```
-python byte_premium_tool.py -l1 mya_mymr -l2 eng_latn
+python3 byte_premium_tool.py --language1=mya_mymr --language2=deu_latn
 ```
 
+To use in Python code (run from the byte-premium-tool repository directory):
+
+```
+from byte_premium_tool import get_pairwise_premium
+print(get_pairwise_premium('mya_mymr', 'deu_latn', verbose=False))
+```
 
 ## Use Case 2: Calculate Byte Premium from Parallel Text
 
-If the languages you want the byte premiums for are not in our dataset, you can calculate the byte premium from a parallel dataset. 
-
-*  recommendation about minimum length (100 lines of text seems to be sufficient, but the more the better)
-*  formatting requirements for text
-*  Language codes should be provided in the format ISO639-3 and ISO 15924, separated by an underscore, e.g. eng_latn.
+If the languages you want the byte premiums for are not in our dataset, you can calculate the byte premium from a parallel dataset. We recommend a minimum of 100 lines of parallel text for each lanauge, but more data will yield more reliable results. Text should use UTF-8 encoding. 
 
 ```
-python byte_premium_tool.py -l1 mya_mymr -t1 mya.txt -l2 eng_latn -t2 eng.txt
+python3 byte_premium_tool.py \
+--language1=xx1_xxxx --language2=eng_latn \
+--text1=xx1_xxxx.txt --text2=eng_latn.txt --text_type=parallel
 ```
 
-
-## Option 3: Predict Byte Premium
+## Option 3: Predict Byte Premium with Monolingual Text
 
 If the language is not in the dataset and you do not have parallel text, you can predict the byte premium based on a few factors. 
 
@@ -44,16 +57,13 @@ We fit linear regressions to predict the length ratio from langauge family, writ
 
 Entropy over characters and byte-character ratio are calculated by the tool from any texts in the language. **The uploaded texts do not have to be parallel. **
 
-The only feature of the languages that must be provided is writing system type (alphabet, abugida, abjad, logography). Descriptions of these types can be found in Appendix C of the paper. We recommend finding the script type on the Wikipedia page for the script [script_type.png]. You should also provide language family, which can be looked up on [Glottolog](https://glottolog.org/glottolog/language), and script name (not the ISO 15924 code, but the actual name) if possible, e.g. Latin, Ge'ez, Burmese. 
+If the script is not in the dataset of 1155 languages, the only feature of the languages that must be provided is script type (alphabet, abugida, abjad, logography). Descriptions of these types can be found in Appendix C of the paper. We recommend finding the script type on the Wikipedia page for the script. You should also provide language family, which can be looked up on [Glottolog](https://glottolog.org/glottolog/language), if possible. 
 
 ```
-python byte_premium_tool.py -l1 arb_arab -t1 arb.txt -w1 abjad -s1 Arabic -f1 Afro-Asiatic -l2 eng_latn -t2 eng.txt -w2 alphabet -s2 Latin -f2 Indo-European
+python3 byte_premium_tool.py \
+--language1=xx1_xxxx --language2=eng_latn \
+--text1=xx1_xxxx.txt --script_type1=alphabet\
 ```
-
-
-## Version and Requirements
-
-*  scipy
 
 ## How to Cite
 
