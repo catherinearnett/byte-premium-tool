@@ -1,7 +1,5 @@
 # Byte Premium Tool
-A tool to calculate scaling needed to achieve cross-lingual training data equity. 
-
-This tool allows you to determine the amount of data (in bytes) for a given language that is equivalent to another amount of data. For more information see the [paper].
+This is a tool to calculate scaling needed to achieve cross-lingual training data equity when dataset size is measured in bytes. For more information see the [paper].
 
 To use the tool, 
 
