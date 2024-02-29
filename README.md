@@ -27,7 +27,7 @@ python byte_premium_tool.py -l1 mya_mymr -l2 eng_latn
 
 If the languages you want the byte premiums for are not in our dataset, you can calculate the byte premium from a parallel dataset. 
 
-*  recommendation about minimum length
+*  recommendation about minimum length (100 lines of text seems to be sufficient, but the more the better)
 *  formatting requirements for text
 *  Language codes should be provided in the format ISO639-3 and ISO 15924, separated by an underscore, e.g. eng_latn.
 
