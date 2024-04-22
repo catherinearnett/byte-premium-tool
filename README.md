@@ -67,3 +67,12 @@ python3 byte_premium_tool.py \
 
 ## How to Cite
 
+```
+@article{arnett2024bit,
+  title={A Bit of a Problem: Measurement Disparities in Dataset Sizes Across Languages},
+  author={Arnett, Catherine and Chang, Tyler A and Bergen, Benjamin K},
+  journal={arXiv preprint arXiv:2403.00686},
+  url={https://arxiv.org/pdf/2403.00686.pdf},
+  year={2024}
+}
+```
