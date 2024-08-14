@@ -1,6 +1,6 @@
 # Byte Premium Tool
 
-This is a tool to calculate dataset scaling needed to achieve cross-lingual training data equity when dataset size is measured in UTF-8 bytes. For more information see the [paper].
+This is a tool to calculate dataset scaling needed to achieve cross-lingual training data equity when dataset size is measured in UTF-8 bytes. For more information, see our paper, [A Bit of a Problem: Measurement Disparities in Dataset Sizes Across Languages (Arnett*, Chang*, & Bergen, SIGUL 2024)](https://arxiv.org/abs/2403.00686).
 
 The output of the tool is a single ratio, which represents the number of bytes it takes to encode a parallel text in Language 1 relative to the number of bytes needed to encode the same content in Language 2. 
 
@@ -68,10 +68,10 @@ python3 byte_premium_tool.py \
 ## How to Cite
 
 ```
-@article{arnett2024bit,
+@inproceedings{arnett2024bit,
   title={A Bit of a Problem: Measurement Disparities in Dataset Sizes Across Languages},
-  author={Arnett, Catherine and Chang, Tyler A and Bergen, Benjamin K},
-  journal={arXiv preprint arXiv:2403.00686},
+  author={Arnett, Catherine and Chang, Tyler A. and Bergen, Benjamin K.},
+  booktitle={Proceedings of the Annual Meeting of the Special Interest Group on Under-Resourced Languages},
   url={https://arxiv.org/pdf/2403.00686.pdf},
   year={2024}
 }
